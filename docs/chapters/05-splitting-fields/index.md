@@ -31,7 +31,7 @@
 ## 后续应用 {#forward}
 
 - [§6 代数闭包](/chapters/06-algebraic-closure/) — 分裂域的极限
-- [§7 Galois 理论基本定理](/chapters/07-galois-correspondence/) — 正规扩张上的 Galois 对应
+- [§7 Galois 理论基本定理](/chapters/08-galois-correspondence/) — 正规扩张上的 Galois 对应
 
 ---
 
@@ -75,8 +75,8 @@
 
 - 分裂域依赖[多项式理论](/chapters/04-polynomials/)（不可约多项式、根的存在性）。
 - 正规扩张是[代数闭包](/chapters/06-algebraic-closure/)的核心输入。
-- 正规性 + 可分性 = [Galois 扩张](/chapters/07-galois-correspondence/)。
-- [有限域](/chapters/08-finite-fields/)的结构定理依赖分裂域理论。
+- 正规性 + 可分性 = [Galois 扩张](/chapters/08-galois-correspondence/)。
+- [有限域](/chapters/10-finite-fields/)的结构定理依赖分裂域理论。
 
 ---
 
