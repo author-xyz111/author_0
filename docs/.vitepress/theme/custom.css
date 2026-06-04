@@ -770,3 +770,270 @@ html {
   color: var(--vp-c-text-2);
   font-style: italic;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   §8  Interactive Components & Knowledge Map
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Knowledge Map Hero ──────────────────────────────────────────────── */
+.knowledge-map-hero {
+  text-align: center;
+  padding: 2rem 1rem 1.5rem;
+}
+
+.knowledge-map-hero h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--galois-primary) 0%, var(--galois-accent) 50%, var(--galois-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.knowledge-map-subtitle {
+  font-size: 1.1rem;
+  color: var(--vp-c-text-2);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ── Cross-Reference Links ───────────────────────────────────────────── */
+.crossref {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.88em;
+  font-weight: 500;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  transition: all 0.2s ease;
+  vertical-align: baseline;
+  position: relative;
+}
+
+.crossref__bracket {
+  opacity: 0.5;
+  font-weight: 400;
+}
+
+.crossref--def {
+  color: var(--env-blue);
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.crossref--thm {
+  color: var(--env-gold);
+  background: rgba(234, 179, 8, 0.08);
+  border: 1px solid rgba(234, 179, 8, 0.2);
+}
+
+.crossref--lem {
+  color: var(--env-purple);
+  background: rgba(168, 85, 247, 0.08);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.crossref--prop {
+  color: var(--env-teal);
+  background: rgba(20, 184, 166, 0.08);
+  border: 1px solid rgba(20, 184, 166, 0.2);
+}
+
+.crossref--cor {
+  color: var(--env-green);
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.crossref--ex {
+  color: var(--env-cyan);
+  background: rgba(6, 182, 212, 0.08);
+  border: 1px solid rgba(6, 182, 212, 0.2);
+}
+
+.crossref:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.crossref--def:hover { background: rgba(59, 130, 246, 0.15); }
+.crossref--thm:hover { background: rgba(234, 179, 8, 0.15); }
+.crossref--lem:hover { background: rgba(168, 85, 247, 0.15); }
+.crossref--prop:hover { background: rgba(20, 184, 166, 0.15); }
+.crossref--cor:hover { background: rgba(34, 197, 94, 0.15); }
+.crossref--ex:hover { background: rgba(6, 182, 212, 0.15); }
+
+.dark .crossref--def { background: rgba(96, 165, 250, 0.12); border-color: rgba(96, 165, 250, 0.25); }
+.dark .crossref--thm { background: rgba(250, 204, 21, 0.12); border-color: rgba(250, 204, 21, 0.25); }
+.dark .crossref--lem { background: rgba(192, 132, 252, 0.12); border-color: rgba(192, 132, 252, 0.25); }
+
+/* ── Cross-Ref Tooltip Overlay ───────────────────────────────────────── */
+.crossref-tooltip-overlay {
+  position: fixed;
+  z-index: 100;
+  pointer-events: none;
+  animation: tooltipFadeIn 0.15s ease;
+}
+
+@keyframes tooltipFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.crossref-tooltip-overlay .tooltip-content {
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  padding: 12px 16px;
+  max-width: 380px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+.dark .crossref-tooltip-overlay .tooltip-content {
+  background: var(--vp-c-bg-soft);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Reading Progress Bar ────────────────────────────────────────────── */
+.reading-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--galois-primary) 0%, var(--galois-accent) 50%, var(--galois-gold) 100%);
+  z-index: 999;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 8px var(--galois-primary-glow);
+}
+
+/* ── Dependency Graph Enhancements ───────────────────────────────────── */
+.dep-graph-container {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--vp-c-bg-alt);
+}
+
+.dep-graph-container svg {
+  width: 100%;
+  display: block;
+}
+
+.dep-graph-node {
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.dep-graph-node:hover {
+  filter: brightness(1.08) drop-shadow(0 2px 6px rgba(0,0,0,0.15));
+}
+
+.dep-graph-edge {
+  stroke-width: 2;
+  fill: none;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.dep-graph-edge.highlighted {
+  opacity: 1;
+  stroke-width: 3;
+}
+
+/* ── Theorem Explorer Enhancements ───────────────────────────────────── */
+.thm-explorer {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.thm-explorer__search {
+  border-bottom: 1px solid var(--vp-c-divider);
+  padding: 12px 16px;
+  background: var(--vp-c-bg-alt);
+}
+
+.thm-explorer__search input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 6px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  font-size: 0.95em;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.thm-explorer__search input:focus {
+  border-color: var(--galois-primary);
+  box-shadow: 0 0 0 3px var(--galois-primary-glow);
+}
+
+.thm-explorer__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.thm-explorer__filter-btn {
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-2);
+  font-size: 0.82em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.thm-explorer__filter-btn:hover,
+.thm-explorer__filter-btn.active {
+  background: var(--galois-primary);
+  color: white;
+  border-color: var(--galois-primary);
+}
+
+.thm-explorer__list {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.thm-explorer__item {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--vp-c-divider);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.thm-explorer__item:hover {
+  background: var(--vp-c-bg-alt);
+}
+
+.thm-explorer__item:last-child {
+  border-bottom: none;
+}
+
+/* ── Print styles for interactive components ─────────────────────────── */
+@media print {
+  .reading-progress-bar,
+  .reading-progress-toc,
+  .crossref-tooltip-overlay {
+    display: none !important;
+  }
+
+  .dep-graph-controls,
+  .thm-explorer__search,
+  .thm-explorer__filters {
+    display: none !important;
+  }
+}

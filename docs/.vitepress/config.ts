@@ -257,6 +257,9 @@ export default defineConfig({
           text: '第四章 · 多项式',
           items: [
             { text: '概述', link: '/chapters/04-polynomials/' },
+            { text: '4.1 多项式的一般理论', link: '/chapters/04-polynomials/4.1-general-theory' },
+            { text: '4.2 不可约性判据', link: '/chapters/04-polynomials/4.2-irreducibility' },
+            { text: '4.3 可分性', link: '/chapters/04-polynomials/4.3-separability' },
           ]
         }
       ],

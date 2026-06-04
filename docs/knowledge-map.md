@@ -1,10 +1,30 @@
 # 知识地图
 
-本页以可视化方式展示 Galois 理论中各核心概念之间的逻辑依赖关系。
+<div class="knowledge-map-hero">
+  <p class="knowledge-map-subtitle">
+    交互式探索 Galois 理论的逻辑结构 — 概念之间的依赖、联系和层次
+  </p>
+</div>
 
-## 概念依赖图
+## 交互式依赖图
 
-下方交互式图展示了从基本代数结构到 Galois 理论核心定理的概念路径。每个节点代表一个核心定义或定理，箭头表示逻辑依赖。
+下方是全站知识依赖的**交互式有向图**。拖拽平移、滚轮缩放、点击节点跳转到对应章节。
+
+<DependencyGraph />
+
+---
+
+## 定理与定义浏览器
+
+按类型、章节搜索和筛选全站的所有数学环境（定义、定理、引理、命题等）：
+
+<TheoremExplorer />
+
+---
+
+## 概念依赖图（静态）
+
+以下 SVG 以静态方式展示从基本代数结构到 Galois 理论核心定理的概念路径：
 
 <div class="knowledge-map-container">
   <svg class="knowledge-graph-svg" viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg">
@@ -24,7 +44,6 @@
     <line class="edge" x1="450" y1="108" x2="450" y2="198"/>
     <line class="edge" x1="700" y1="108" x2="700" y2="198"/>
     <!-- Field Theory -->
-    <line class="edge" x1="700" y1="108" x2="700" y2="198"/>
     <line class="edge" x1="300" y1="198" x2="300" y2="288"/>
     <line class="edge" x1="450" y1="198" x2="450" y2="288"/>
     <line class="edge" x1="700" y1="198" x2="600" y2="288"/>
@@ -174,6 +193,29 @@
   </svg>
 </div>
 
+---
+
+## Galois 对应：核心对称性
+
+Galois 理论的核心在于如下**反序双射**：
+
+$$\boxed{\{\text{中间域 } E : F \subseteq E \subseteq K\} \quad \underset{\text{反序}}{\longleftrightarrow} \quad \{\text{子群 } H : H \leq \operatorname{Gal}(K/F)\}}$$
+
+具体而言，Galois 对应基本定理（{thm:fundamental-galois}）建立了一一对应：
+
+| 域侧 | 群侧 | 方向 |
+|------|------|------|
+| 中间域 $E$ | $\operatorname{Gal}(K/E) = \{\sigma \in G \mid \sigma\|_E = \mathrm{id}\}$ | 域 → 群 |
+| 子群 $H$ | $K^H = \{x \in K \mid \sigma(x) = x,\, \forall \sigma \in H\}$ | 群 → 域 |
+| $E_1 \subseteq E_2$ | $\operatorname{Gal}(K/E_1) \supseteq \operatorname{Gal}(K/E_2)$ | 反序 |
+| $[E:F]$ | $[G : H]$ | 指数对应 |
+| $E/F$ 正规 | $H \trianglelefteq G$ | 结构对应 |
+
+**双向逆映射**：对 Galois 扩张 $K/F$，有
+$$\operatorname{Gal}(K/K^H) = H, \quad K^{\operatorname{Gal}(K/E)} = E.$$
+
+---
+
 ## 核心概念层级
 
 | 层级 | 概念 | 出处 | 向上连接 |
@@ -188,13 +230,7 @@
 | 7 | 可解性、尺规作图 | §9.1–9.3 | 终极应用 |
 | ∞ | 无限 Galois 理论、代数闭包 | §11, §12 | 现代观点 |
 
-## Galois 对应的对称性
-
-Galois 理论的核心是如下对称：
-
-$$\{\text{中间域 } E : F \subseteq E \subseteq K\} \quad \longleftrightarrow \quad \{\text{子群 } H : H \leq \operatorname{Gal}(K/F)\}$$
-
-这是一个**反序**的一一对应（包含关系反转），将域的结构问题转化为群的结构问题。
+---
 
 ## 关键定理依赖链
 
@@ -213,3 +249,18 @@ Galois 理论基本定理 (§8.1)
     ↓
 五次方程不可解 (§9.2)
 ```
+
+---
+
+## 如何使用本教程
+
+::: tip 建议的阅读路径
+1. **线性阅读**：按章节顺序 1 → 12 学习，适合首次阅读。
+2. **概念驱动**：从 [Galois 对应基本定理](/chapters/08-galois-correspondence/) 出发，反向追溯需要的工具。
+3. **应用导向**：从 [尺规作图](/chapters/09-solvability/) 或 [有限域](/chapters/10-finite-fields/) 出发，按需补充理论基础。
+4. **交互探索**：使用上方的 **依赖图** 和 **定理浏览器** 导航。
+:::
+
+::: info 交叉引用
+页面中的 <span class="crossref crossref--thm">[定理]</span>、<span class="crossref crossref--def">[定义]</span> 等链接可以**悬停预览**内容摘要（需鼠标悬停），并**点击跳转**到完整定义/定理。
+:::

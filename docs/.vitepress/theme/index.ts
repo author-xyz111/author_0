@@ -8,6 +8,10 @@ import SubgroupLattice from './components/SubgroupLattice.vue'
 import CorrespondenceTable from './components/CorrespondenceTable.vue'
 import KnowledgeGraph from './components/KnowledgeGraph.vue'
 import FieldExtensionDiagram from './components/FieldExtensionDiagram.vue'
+import CrossRefTooltip from './components/CrossRefTooltip.vue'
+import DependencyGraph from './components/DependencyGraph.vue'
+import TheoremExplorer from './components/TheoremExplorer.vue'
+import ReadingProgress from './components/ReadingProgress.vue'
 import './custom.css'
 
 // Cross-page cross-reference manifest
@@ -70,6 +74,10 @@ export default {
     app.component('CorrespondenceTable', CorrespondenceTable)
     app.component('KnowledgeGraph', KnowledgeGraph)
     app.component('FieldExtensionDiagram', FieldExtensionDiagram)
+    app.component('CrossRefTooltip', CrossRefTooltip)
+    app.component('DependencyGraph', DependencyGraph)
+    app.component('TheoremExplorer', TheoremExplorer)
+    app.component('ReadingProgress', ReadingProgress)
   },
   setup() {
     const route = useRoute()
