@@ -126,6 +126,19 @@
   --env-axiom-text: #fca5a5;
 }
 
+/* ── MathJax 3 Assistive-MathML Fix ─────────────────────────────────── */
+/* Prevent the hidden MathML accessibility layer from showing alongside
+   the SVG rendering, which causes "double formula" display. */
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+}
 /* ── Global Typography ─────────────────────────────────────────────── */
 :root {
   --vp-c-brand-1: var(--galois-primary);
