@@ -1,8 +1,11 @@
 import { defineConfig } from 'vitepress'
 import { writeFileSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { resolve, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import container from 'markdown-it-container'
 import type MarkdownIt from 'markdown-it'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 // ── Math environment container plugin ──────────────────────────────────
 interface EnvDef { type: string; label: string; color: string }
@@ -147,7 +150,7 @@ function writeManifest() {
     }
   }
   try {
-    const outPath = resolve(import.meta.dirname, '../public/crossref-manifest.json')
+    const outPath = resolve(__dirname, '../public/crossref-manifest.json')
     writeFileSync(outPath, JSON.stringify(manifest, null, 2), 'utf-8')
     console.log(`[crossref] Manifest written: ${Object.keys(manifest).length} anchors → ${outPath}`)
   } catch (e) {
@@ -301,6 +304,8 @@ export default defineConfig({
           text: '第七章 · Galois 群',
           items: [
             { text: '概述', link: '/chapters/07-galois-groups/' },
+            { text: '7.1 Galois 群的定义与基本性质', link: '/chapters/07-galois-groups/7.1-definition-and-examples' },
+            { text: '7.2 Galois 群的计算', link: '/chapters/07-galois-groups/7.2-computation' },
           ]
         }
       ],
@@ -309,6 +314,8 @@ export default defineConfig({
           text: '第八章 · Galois 对应',
           items: [
             { text: '概述', link: '/chapters/08-galois-correspondence/' },
+            { text: '8.1 基本定理', link: '/chapters/08-galois-correspondence/8.1-fundamental-theorem' },
+            { text: '8.2 Galois 扩张的刻画', link: '/chapters/08-galois-correspondence/8.2-galois-extensions' },
           ]
         }
       ],
@@ -317,6 +324,8 @@ export default defineConfig({
           text: '第九章 · 可解性与尺规作图',
           items: [
             { text: '概述', link: '/chapters/09-solvability/' },
+            { text: '9.1 可解群与根式解', link: '/chapters/09-solvability/9.1-solvable-groups' },
+            { text: '9.2 尺规作图', link: '/chapters/09-solvability/9.2-constructibility' },
           ]
         }
       ],
@@ -325,6 +334,9 @@ export default defineConfig({
           text: '第十章 · 有限域',
           items: [
             { text: '概述', link: '/chapters/10-finite-fields/' },
+            { text: '10.1 有限域的结构', link: '/chapters/10-finite-fields/10.1-structure' },
+            { text: '10.2 Frobenius 自同构', link: '/chapters/10-finite-fields/10.2-frobenius' },
+            { text: '10.3 应用', link: '/chapters/10-finite-fields/10.3-applications' },
           ]
         }
       ],
