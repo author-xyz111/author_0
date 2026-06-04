@@ -70,16 +70,16 @@ features:
   <div class="chapter-card__desc">多项式环、不可约性、Eisenstein 判据、整根定理</div>
 </a>
 
-<a class="chapter-card" href="/chapters/05-field-extensions/">
+<a class="chapter-card" href="/chapters/05-splitting-fields/">
   <div class="chapter-card__number">第五章</div>
-  <div class="chapter-card__title">域扩张</div>
-  <div class="chapter-card__desc">单扩张、代数扩张与超越扩张、扩张次数、塔公式</div>
-</a>
-
-<a class="chapter-card" href="/chapters/06-splitting-fields/">
-  <div class="chapter-card__number">第六章</div>
   <div class="chapter-card__title">分裂域与正规扩张</div>
   <div class="chapter-card__desc">分裂域的存在唯一性、正规扩张、可分扩张</div>
+</a>
+
+<a class="chapter-card" href="/chapters/06-algebraic-closure/">
+  <div class="chapter-card__number">第六章</div>
+  <div class="chapter-card__title">代数闭包</div>
+  <div class="chapter-card__desc">代数闭包的存在唯一性、Zorn 引理、代数独立</div>
 </a>
 
 <a class="chapter-card" href="/chapters/07-galois-groups/">

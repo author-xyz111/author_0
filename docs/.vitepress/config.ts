@@ -87,8 +87,10 @@ function crossrefPlugin(md: MarkdownIt) {
     const token = tokens[idx]
     const href = token.attrGet('href') || '#'
     const cls = token.attrGet('class') || ''
+    const dataRef = token.attrGet('data-ref') || ''
     const label = token.content
-    return `<a class="${cls}" href="${href}"><span class="crossref__bracket">[</span>${label}<span class="crossref__bracket">]</span></a>`
+    const dataAttr = dataRef ? ` data-ref="${dataRef}"` : ''
+    return `<a class="${cls}" href="${href}"${dataAttr}><span class="crossref__bracket">[</span>${label}<span class="crossref__bracket">]</span></a>`
   }
 }
 
@@ -128,11 +130,14 @@ function crossrefManifestPlugin(md: MarkdownIt) {
         anchorRegistry.push({ id, page: '/' + page.replace(/index\.md$/, '').replace(/\.md$/, ''), kind })
       }
     }
-    return origRender(src, env)
+    const result = origRender(src, env)
+    // Write manifest eagerly after first batch of renders (dev mode support)
+    ensureManifestWritten()
+    return result
   }
 }
 
-// Write manifest after build
+// Write manifest after build AND eagerly in dev mode
 function writeManifest() {
   const manifest: Record<string, string> = {}
   for (const entry of anchorRegistry) {
@@ -147,6 +152,15 @@ function writeManifest() {
     console.log(`[crossref] Manifest written: ${Object.keys(manifest).length} anchors → ${outPath}`)
   } catch (e) {
     // In dev mode, public/ may not exist yet — silently ignore
+  }
+}
+
+// Also write manifest after each page render (for dev mode)
+let manifestWritten = false
+function ensureManifestWritten() {
+  if (!manifestWritten && anchorRegistry.length > 0) {
+    writeManifest()
+    manifestWritten = true
   }
 }
 
@@ -269,6 +283,15 @@ export default defineConfig({
             { text: '概述', link: '/chapters/05-splitting-fields/' },
             { text: '5.1 分裂域', link: '/chapters/05-splitting-fields/5.1-splitting-fields' },
             { text: '5.2 正规扩张', link: '/chapters/05-splitting-fields/5.2-normal-extensions' },
+          ]
+        }
+      ],
+      '/chapters/06-algebraic-closure/': [
+        {
+          text: '第六章 · 代数闭包',
+          items: [
+            { text: '概述', link: '/chapters/06-algebraic-closure/' },
+            { text: '6.1 代数闭包的理论', link: '/chapters/06-algebraic-closure/6.1-algebraic-closure' },
           ]
         }
       ],

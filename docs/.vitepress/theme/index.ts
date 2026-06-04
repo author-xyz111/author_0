@@ -14,6 +14,8 @@ import ReadingProgress from './components/ReadingProgress.vue'
 import ConceptCard from './components/ConceptCard.vue'
 import ProofExplorer from './components/ProofExplorer.vue'
 import GaloisCorrespondenceInteractive from './components/GaloisCorrespondenceInteractive.vue'
+import ChapterRoadmap from './components/ChapterRoadmap.vue'
+import FieldTowerExplorer from './components/FieldTowerExplorer.vue'
 import './custom.css'
 
 // Cross-page cross-reference manifest
@@ -84,6 +86,8 @@ export default {
     app.component('ConceptCard', ConceptCard)
     app.component('ProofExplorer', ProofExplorer)
     app.component('GaloisCorrespondenceInteractive', GaloisCorrespondenceInteractive)
+    app.component('ChapterRoadmap', ChapterRoadmap)
+    app.component('FieldTowerExplorer', FieldTowerExplorer)
   },
   setup() {
     const route = useRoute()
