@@ -1,7 +1,7 @@
 # 第四章 · 多项式 {#ch-polynomials}
 
 ::: intuition 为什么需要多章来讲多项式？
-多项式是连接[环论](/chapters/02-rings/)与[域扩张](/chapters/05-field-extensions/)的桥梁。域扩张的"砖块"——代数元——正是多项式的根。理解多项式的结构（不可约分解、根的重数、分裂域），就是理解域扩张如何从多项式中"生长"出来。多项式的对称性（根的置换）最终演化为 Galois 群。
+多项式是连接[环论](/chapters/02-rings/)与[分裂域与正规扩张](/chapters/05-splitting-fields/)的桥梁。域扩张的"砖块"——代数元——正是多项式的根。理解多项式的结构（不可约分解、根的重数、分裂域），就是理解域扩张如何从多项式中"生长"出来。多项式的对称性（根的置换）最终演化为 Galois 群。
 :::
 
 ## 本章结构
@@ -51,7 +51,7 @@ Eisenstein 判据          代数元的次数
 ## 推荐阅读顺序
 
 ::: tip 三条路径
-1. **标准路径**：§4.1 → §4.2 → §4.3，然后进入[第五章 · 域扩张](/chapters/05-field-extensions/)
+1. **标准路径**：§4.1 → §4.2 → §4.3，然后进入[第五章 · 分裂域与正规扩张](/chapters/05-splitting-fields/)
 2. **速通路径**：仅 §4.1（多项式环的 UFD 性质）和 §4.3（可分性），因为它们是后续章节的核心工具
 3. **应用导向**：§4.2（不可约性判据）→ §4.3（可分性），直接进入[分裂域](/chapters/06-splitting-fields/)
 :::
@@ -60,5 +60,5 @@ Eisenstein 判据          代数元的次数
 
 <div class="chapter-nav">
   <span>← [第三章 · 域论基础](/chapters/03-fields/)</span>
-  <span>[第五章 · 域扩张 →](/chapters/05-field-extensions/)</span>
+  <span>[第五章 · 分裂域与正规扩张 →](/chapters/05-splitting-fields/)</span>
 </div>

@@ -127,7 +127,7 @@ const chapters = [
   { id: '02-rings', num: 2, label: '环与理想' },
   { id: '03-fields', num: 3, label: '域论基础' },
   { id: '04-polynomials', num: 4, label: '多项式' },
-  { id: '05-field-extensions', num: 5, label: '域扩张' },
+  { id: '05-splitting-fields', num: 5, label: '分裂域与正规扩张' },
   { id: '06-splitting-fields', num: 6, label: '分裂域与正规扩张' },
   { id: '07-galois-groups', num: 7, label: 'Galois 群' },
   { id: '08-galois-correspondence', num: 8, label: 'Galois 对应' },
