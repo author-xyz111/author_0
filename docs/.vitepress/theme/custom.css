@@ -1,0 +1,772 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   现代 Galois 理论 · Custom Theme CSS
+   Galois-style mathematical visual system
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── CSS Custom Properties (Design Tokens) ─────────────────────────── */
+:root {
+  /* Primary palette — deep indigo inspired by mathematical elegance */
+  --galois-primary: #2c3e8c;
+  --galois-primary-light: #4f5fad;
+  --galois-primary-dark: #1a2760;
+  --galois-accent: #c9a227;
+  --galois-accent-light: #e0c157;
+
+  /* Math environment colors */
+  --env-definition-bg: #eff6ff;
+  --env-definition-border: #3b82f6;
+  --env-definition-text: #1e40af;
+
+  --env-theorem-bg: #fefce8;
+  --env-theorem-border: #ca8a04;
+  --env-theorem-text: #713f12;
+
+  --env-lemma-bg: #faf5ff;
+  --env-lemma-border: #9333ea;
+  --env-lemma-text: #581c87;
+
+  --env-proposition-bg: #f0fdfa;
+  --env-proposition-border: #14b8a6;
+  --env-proposition-text: #134e4a;
+
+  --env-corollary-bg: #f0fdf4;
+  --env-corollary-border: #22c55e;
+  --env-corollary-text: #14532d;
+
+  --env-proof-bg: #f8fafc;
+  --env-proof-border: #94a3b8;
+  --env-proof-text: #334155;
+
+  --env-example-bg: #ecfeff;
+  --env-example-border: #06b6d4;
+  --env-example-text: #155e75;
+
+  --env-remark-bg: #f1f5f9;
+  --env-remark-border: #64748b;
+  --env-remark-text: #334155;
+
+  --env-exercise-bg: #fff1f2;
+  --env-exercise-border: #f43f5e;
+  --env-exercise-text: #881337;
+
+  --env-notation-bg: #fffbeb;
+  --env-notation-border: #f59e0b;
+  --env-notation-text: #78350f;
+
+  --env-intuition-bg: #eef2ff;
+  --env-intuition-border: #6366f1;
+  --env-intuition-text: #312e81;
+
+  --env-axiom-bg: #fef2f2;
+  --env-axiom-border: #ef4444;
+  --env-axiom-text: #7f1d1d;
+
+  /* Layout */
+  --env-border-radius: 6px;
+  --env-padding: 1rem 1.25rem;
+  --env-header-margin-bottom: 0.6rem;
+
+  /* Typography */
+  --vp-font-family-base: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', 'Source Code Pro',
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.dark {
+  --env-definition-bg: #0c1929;
+  --env-definition-border: #3b82f6;
+  --env-definition-text: #93c5fd;
+
+  --env-theorem-bg: #1a1505;
+  --env-theorem-border: #ca8a04;
+  --env-theorem-text: #fde047;
+
+  --env-lemma-bg: #150a24;
+  --env-lemma-border: #9333ea;
+  --env-lemma-text: #d8b4fe;
+
+  --env-proposition-bg: #042f2e;
+  --env-proposition-border: #14b8a6;
+  --env-proposition-text: #5eead4;
+
+  --env-corollary-bg: #052e16;
+  --env-corollary-border: #22c55e;
+  --env-corollary-text: #86efac;
+
+  --env-proof-bg: #0f172a;
+  --env-proof-border: #475569;
+  --env-proof-text: #94a3b8;
+
+  --env-example-bg: #083344;
+  --env-example-border: #06b6d4;
+  --env-example-text: #67e8f9;
+
+  --env-remark-bg: #0f172a;
+  --env-remark-border: #475569;
+  --env-remark-text: #94a3b8;
+
+  --env-exercise-bg: #1c0a10;
+  --env-exercise-border: #f43f5e;
+  --env-exercise-text: #fda4af;
+
+  --env-notation-bg: #1c1407;
+  --env-notation-border: #f59e0b;
+  --env-notation-text: #fcd34d;
+
+  --env-intuition-bg: #0e0f2e;
+  --env-intuition-border: #6366f1;
+  --env-intuition-text: #a5b4fc;
+
+  --env-axiom-bg: #1c0a0a;
+  --env-axiom-border: #ef4444;
+  --env-axiom-text: #fca5a5;
+}
+
+/* ── Global Typography ─────────────────────────────────────────────── */
+:root {
+  --vp-c-brand-1: var(--galois-primary);
+  --vp-c-brand-2: var(--galois-primary-light);
+  --vp-c-brand-3: var(--galois-primary-dark);
+  --vp-c-brand-soft: rgba(44, 62, 140, 0.14);
+}
+
+.vp-doc {
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.vp-doc h1 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--galois-primary), var(--galois-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.vp-doc h2 {
+  border-bottom: 2px solid var(--galois-accent);
+  padding-bottom: 0.4rem;
+  margin-top: 2.5rem;
+}
+
+.vp-doc h3 {
+  color: var(--galois-primary);
+}
+
+/* ── Math Environment Containers ───────────────────────────────────── */
+.math-env {
+  position: relative;
+  margin: 1.5rem 0;
+  padding: var(--env-padding);
+  border-radius: var(--env-border-radius);
+  border-left: 4px solid;
+  transition: box-shadow 0.2s ease;
+}
+
+.math-env:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.dark .math-env:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+.math-env__header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: var(--env-header-margin-bottom);
+  font-weight: 600;
+}
+
+.math-env__label {
+  display: inline-block;
+  padding: 0.1em 0.5em;
+  border-radius: 3px;
+  font-size: 0.85em;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.math-env__title {
+  font-weight: 600;
+  font-size: 1em;
+}
+
+.math-env__body {
+  overflow-wrap: break-word;
+}
+
+.math-env__body p:first-child {
+  margin-top: 0;
+}
+
+.math-env__body p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Definition ─────────────────────────────────────────────────────── */
+.math-env--definition {
+  background: var(--env-definition-bg);
+  border-color: var(--env-definition-border);
+}
+
+.math-env--definition .math-env__label {
+  background: var(--env-definition-border);
+  color: #fff;
+}
+
+/* ── Theorem ────────────────────────────────────────────────────────── */
+.math-env--theorem {
+  background: var(--env-theorem-bg);
+  border-color: var(--env-theorem-border);
+}
+
+.math-env--theorem .math-env__label {
+  background: var(--env-theorem-border);
+  color: #fff;
+}
+
+/* ── Lemma ──────────────────────────────────────────────────────────── */
+.math-env--lemma {
+  background: var(--env-lemma-bg);
+  border-color: var(--env-lemma-border);
+}
+
+.math-env--lemma .math-env__label {
+  background: var(--env-lemma-border);
+  color: #fff;
+}
+
+/* ── Proposition ────────────────────────────────────────────────────── */
+.math-env--proposition {
+  background: var(--env-proposition-bg);
+  border-color: var(--env-proposition-border);
+}
+
+.math-env--proposition .math-env__label {
+  background: var(--env-proposition-border);
+  color: #fff;
+}
+
+/* ── Corollary ──────────────────────────────────────────────────────── */
+.math-env--corollary {
+  background: var(--env-corollary-bg);
+  border-color: var(--env-corollary-border);
+}
+
+.math-env--corollary .math-env__label {
+  background: var(--env-corollary-border);
+  color: #fff;
+}
+
+/* ── Proof ──────────────────────────────────────────────────────────── */
+.math-env--proof {
+  background: var(--env-proof-bg);
+  border-color: var(--env-proof-border);
+  border-left-style: dashed;
+}
+
+.math-env--proof .math-env__label {
+  background: var(--env-proof-border);
+  color: #fff;
+}
+
+.math-env--proof .math-env__body::after {
+  content: '∎';
+  display: block;
+  text-align: right;
+  color: var(--env-proof-text);
+  font-size: 1.2em;
+  margin-top: 0.5rem;
+}
+
+/* ── Example ────────────────────────────────────────────────────────── */
+.math-env--example {
+  background: var(--env-example-bg);
+  border-color: var(--env-example-border);
+}
+
+.math-env--example .math-env__label {
+  background: var(--env-example-border);
+  color: #fff;
+}
+
+/* ── Remark ─────────────────────────────────────────────────────────── */
+.math-env--remark {
+  background: var(--env-remark-bg);
+  border-color: var(--env-remark-border);
+}
+
+.math-env--remark .math-env__label {
+  background: var(--env-remark-border);
+  color: #fff;
+}
+
+/* ── Exercise ───────────────────────────────────────────────────────── */
+.math-env--exercise {
+  background: var(--env-exercise-bg);
+  border-color: var(--env-exercise-border);
+}
+
+.math-env--exercise .math-env__label {
+  background: var(--env-exercise-border);
+  color: #fff;
+}
+
+/* ── Notation ───────────────────────────────────────────────────────── */
+.math-env--notation {
+  background: var(--env-notation-bg);
+  border-color: var(--env-notation-border);
+}
+
+.math-env--notation .math-env__label {
+  background: var(--env-notation-border);
+  color: #fff;
+}
+
+/* ── Intuition ──────────────────────────────────────────────────────── */
+.math-env--intuition {
+  background: var(--env-intuition-bg);
+  border-color: var(--env-intuition-border);
+  border-style: dashed;
+}
+
+.math-env--intuition .math-env__label {
+  background: var(--env-intuition-border);
+  color: #fff;
+}
+
+/* ── Axiom ──────────────────────────────────────────────────────────── */
+.math-env--axiom {
+  background: var(--env-axiom-bg);
+  border-color: var(--env-axiom-border);
+  border-left-width: 6px;
+}
+
+.math-env--axiom .math-env__label {
+  background: var(--env-axiom-border);
+  color: #fff;
+}
+
+/* ── Cross-reference Links ──────────────────────────────────────────── */
+.crossref {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15em;
+  padding: 0.05em 0.35em;
+  border-radius: 3px;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.crossref__bracket {
+  opacity: 0.5;
+  font-weight: 300;
+}
+
+.crossref--def {
+  color: var(--env-definition-text);
+  background: var(--env-definition-bg);
+  border: 1px solid var(--env-definition-border);
+}
+
+.crossref--thm {
+  color: var(--env-theorem-text);
+  background: var(--env-theorem-bg);
+  border: 1px solid var(--env-theorem-border);
+}
+
+.crossref--lem {
+  color: var(--env-lemma-text);
+  background: var(--env-lemma-bg);
+  border: 1px solid var(--env-lemma-border);
+}
+
+.crossref--prop {
+  color: var(--env-proposition-text);
+  background: var(--env-proposition-bg);
+  border: 1px solid var(--env-proposition-border);
+}
+
+.crossref--cor {
+  color: var(--env-corollary-text);
+  background: var(--env-corollary-bg);
+  border: 1px solid var(--env-corollary-border);
+}
+
+.crossref--ex {
+  color: var(--env-example-text);
+  background: var(--env-example-bg);
+  border: 1px solid var(--env-example-border);
+}
+
+.crossref--rem {
+  color: var(--env-remark-text);
+  background: var(--env-remark-bg);
+  border: 1px solid var(--env-remark-border);
+}
+
+.crossref--ax {
+  color: var(--env-axiom-text);
+  background: var(--env-axiom-bg);
+  border: 1px solid var(--env-axiom-border);
+}
+
+.crossref:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  filter: brightness(0.95);
+}
+
+/* ── Homepage Styling ───────────────────────────────────────────────── */
+.VPHero .name {
+  font-size: 2.8rem !important;
+}
+
+.VPHero .text {
+  font-size: 1.6rem !important;
+}
+
+.VPHero .tagline {
+  font-size: 1.15rem !important;
+  max-width: 600px !important;
+}
+
+/* Custom hero gradient */
+.VPHero .VPImage {
+  filter: drop-shadow(0 0 30px rgba(44, 62, 140, 0.3));
+}
+
+/* ── Knowledge Map Styling ──────────────────────────────────────────── */
+.knowledge-map-container {
+  margin: 2rem 0;
+}
+
+.knowledge-graph-svg {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  display: block;
+}
+
+.knowledge-graph-svg .node {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.knowledge-graph-svg .node:hover {
+  filter: brightness(1.1);
+}
+
+.knowledge-graph-svg .node rect {
+  rx: 8;
+  ry: 8;
+  stroke-width: 2;
+}
+
+.knowledge-graph-svg .node text {
+  font-family: var(--vp-font-family-base);
+  font-size: 13px;
+  fill: currentColor;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+.knowledge-graph-svg .edge {
+  stroke: #94a3b8;
+  stroke-width: 1.5;
+  fill: none;
+  marker-end: url(#arrowhead);
+}
+
+.dark .knowledge-graph-svg .edge {
+  stroke: #475569;
+}
+
+/* ── Lattice Diagram ────────────────────────────────────────────────── */
+.lattice-diagram-container {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.lattice-diagram-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ── Interactive Components ─────────────────────────────────────────── */
+.proof-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.35em 0.85em;
+  margin: 0.5rem 0;
+  background: var(--env-proof-bg);
+  border: 1px solid var(--env-proof-border);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: 500;
+  color: var(--env-proof-text);
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.proof-toggle:hover {
+  background: var(--env-proof-border);
+  color: #fff;
+}
+
+.proof-toggle .arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.proof-toggle.expanded .arrow {
+  transform: rotate(90deg);
+}
+
+.proof-content {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+/* ── Dependency Graph Page ──────────────────────────────────────────── */
+.dep-graph-container {
+  position: relative;
+  width: 100%;
+  min-height: 500px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--vp-c-bg);
+}
+
+.dep-graph-controls {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.dep-graph-controls button {
+  padding: 0.3em 0.7em;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 4px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  cursor: pointer;
+  font-size: 0.85em;
+  transition: all 0.15s ease;
+}
+
+.dep-graph-controls button:hover {
+  background: var(--vp-c-bg-soft);
+}
+
+/* ── Chapter Overview Cards ─────────────────────────────────────────── */
+.chapter-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+
+.chapter-card {
+  position: relative;
+  padding: 1.25rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg);
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.chapter-card:hover {
+  border-color: var(--galois-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.dark .chapter-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.chapter-card__number {
+  font-size: 0.8em;
+  font-weight: 700;
+  color: var(--galois-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.chapter-card__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0.3rem 0;
+  color: var(--vp-c-text-1);
+}
+
+.chapter-card__desc {
+  font-size: 0.9em;
+  color: var(--vp-c-text-2);
+  line-height: 1.5;
+}
+
+/* ── Progress indicator for chapter cards ───────────────────────────── */
+.chapter-card__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--vp-c-divider);
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+}
+
+.chapter-card__progress-bar {
+  height: 100%;
+  background: var(--galois-accent);
+  transition: width 0.3s ease;
+}
+
+/* ── Sidebar Enhancements ───────────────────────────────────────────── */
+.VPSidebar .group .title {
+  font-weight: 700;
+}
+
+.VPSidebar .VPSidebarItem.level-1 > .item > .indicator {
+  background-color: var(--galois-accent);
+}
+
+/* ── Table styling ──────────────────────────────────────────────────── */
+.vp-doc table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.vp-doc table th {
+  background: var(--galois-primary);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+.vp-doc table td {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.vp-doc table tr:hover td {
+  background: var(--vp-c-bg-soft);
+}
+
+/* ── Footnote styling ───────────────────────────────────────────────── */
+.vp-doc .footnotes {
+  border-top: 2px solid var(--galois-accent);
+  padding-top: 1rem;
+  margin-top: 3rem;
+  font-size: 0.9em;
+}
+
+/* ── Print styles ───────────────────────────────────────────────────── */
+@media print {
+  .VPNav,
+  .VPSidebar,
+  .VPDocFooter,
+  .VPFooter {
+    display: none !important;
+  }
+
+  .math-env {
+    break-inside: avoid;
+  }
+
+  .proof-toggle {
+    display: none;
+  }
+
+  .proof-content {
+    max-height: none !important;
+  }
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--vp-c-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--vp-c-divider);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--galois-primary-light);
+}
+
+/* ── Smooth scrolling ───────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Content link styling ───────────────────────────────────────────── */
+.vp-doc a {
+  color: var(--galois-primary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease;
+}
+
+.vp-doc a:hover {
+  border-bottom-color: var(--galois-primary);
+}
+
+.dark .vp-doc a {
+  color: var(--galois-accent-light);
+}
+
+/* ── Math block enhancements ────────────────────────────────────────── */
+.katex-display {
+  margin: 1.2rem 0;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+}
+
+.katex {
+  font-size: 1.05em;
+}
+
+/* ── Diagram component containers ───────────────────────────────────── */
+.diagram-container {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: var(--vp-c-bg-alt);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.diagram-container figcaption {
+  margin-top: 1rem;
+  font-size: 0.9em;
+  color: var(--vp-c-text-2);
+  font-style: italic;
+}
