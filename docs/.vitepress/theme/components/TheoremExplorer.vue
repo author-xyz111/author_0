@@ -123,18 +123,18 @@ const kindColors: Record<string, string> = {
 }
 
 const chapters = [
-  { id: '01-groups', num: 1, label: '群论基础' },
-  { id: '02-rings', num: 2, label: '环与理想' },
-  { id: '03-fields', num: 3, label: '域论基础' },
-  { id: '04-polynomials', num: 4, label: '多项式' },
-  { id: '05-splitting-fields', num: 5, label: '分裂域与正规扩张' },
-  { id: '06-splitting-fields', num: 6, label: '分裂域与正规扩张' },
-  { id: '07-galois-groups', num: 7, label: 'Galois 群' },
-  { id: '08-galois-correspondence', num: 8, label: 'Galois 对应' },
-  { id: '09-solvability', num: 9, label: '可解性与尺规作图' },
-  { id: '10-finite-fields', num: 10, label: '有限域' },
-  { id: '11-infinite-galois', num: 11, label: '无限 Galois 理论' },
-  { id: '12-algebraic-closure', num: 12, label: '代数闭包' },
+  { id: 'groups', num: 1, label: '群论基础' },
+  { id: 'rings', num: 2, label: '环与理想' },
+  { id: 'fields', num: 3, label: '域论基础' },
+  { id: 'polynomials', num: 4, label: '多项式' },
+  { id: 'splitting-fields', num: 5, label: '分裂域与正规扩张' },
+  { id: 'algebraic-closure', num: 6, label: '代数闭包' },
+  { id: 'galois-groups', num: 7, label: 'Galois 群' },
+  { id: 'galois-correspondence', num: 8, label: 'Galois 对应' },
+  { id: 'solvability', num: 9, label: '可解性与尺规作图' },
+  { id: 'finite-fields', num: 10, label: '有限域' },
+  { id: 'infinite-galois', num: 11, label: '无限 Galois 理论' },
+  { id: 'infinite-algebraic-closure', num: 12, label: '代数闭包' },
 ]
 
 // Curated items (comprehensive catalog of all mathematical environments)

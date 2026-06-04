@@ -130,7 +130,7 @@ const nodes: GraphNode[] = [
   { id: 'ch3', label: '域论基础', chapter: 3, type: 'core', desc: '域、素域、域特征、域的自同构', x: 400, y: 170 },
   { id: 'ch4', label: '多项式', chapter: 4, type: 'core', desc: '多项式环、不可约性、可分性', x: 200, y: 170 },
   { id: 'ch5', label: '域扩张', chapter: 5, type: 'core', desc: '单扩张、代数/超越扩张、扩张次数、塔公式', x: 300, y: 290 },
-  { id: 'ch6', label: '分裂域与正规扩张', chapter: 6, type: 'key', desc: '分裂域存在唯一性、正规扩张、可分扩张', x: 300, y: 410 },
+  { id: 'ch6', label: '代数闭包', chapter: 6, type: 'key', desc: '代数闭包的存在唯一性、代数无关与超越基', x: 300, y: 410 },
   { id: 'ch7', label: 'Galois 群', chapter: 7, type: 'key', desc: 'Galois 群的定义、性质与计算', x: 300, y: 530 },
   { id: 'ch8', label: 'Galois 对应', chapter: 8, type: 'key', desc: 'Galois 理论基本定理：子群 ↔ 中间域的反序一一对应', x: 300, y: 650 },
   { id: 'ch9', label: '可解性与尺规作图', chapter: 9, type: 'application', desc: '多项式可解性判据、尺规作图三大不可能问题', x: 100, y: 770 },
@@ -260,7 +260,7 @@ function goToChapter(node: GraphNode) {
 function getSlug(node: GraphNode): string {
   const slugs: Record<string, string> = {
     ch1: 'groups', ch2: 'rings', ch3: 'fields', ch4: 'polynomials',
-    ch5: 'field-extensions', ch6: 'splitting-fields', ch7: 'galois-groups',
+    ch5: 'splitting-fields', ch6: 'algebraic-closure', ch7: 'galois-groups',
     ch8: 'galois-correspondence', ch9: 'solvability', ch10: 'finite-fields',
     ch11: 'infinite-galois', ch12: 'algebraic-closure'
   }
