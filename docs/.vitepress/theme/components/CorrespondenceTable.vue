@@ -57,12 +57,6 @@ interface CorrespondenceEntry {
   detail: string
 }
 
-defineProps<{
-  groupName?: string
-  baseFieldName?: string
-  topFieldName?: string
-}>()
-
 const props = withDefaults(defineProps<{
   groupName?: string
   baseFieldName?: string
