@@ -211,6 +211,7 @@ export default defineConfig({
           { text: '第三章 · 域论基础', link: '/chapters/03-fields/' },
           { text: '第四章 · 多项式', link: '/chapters/04-polynomials/' },
           { text: '第五章 · 分裂域与正规扩张', link: '/chapters/05-splitting-fields/' },
+          { text: '第六章 · 代数闭包', link: '/chapters/06-algebraic-closure/' },
           { text: '第七章 · Galois 群', link: '/chapters/07-galois-groups/' },
           { text: '第八章 · Galois 对应', link: '/chapters/08-galois-correspondence/' },
           { text: '第九章 · 可解性与尺规作图', link: '/chapters/09-solvability/' },
