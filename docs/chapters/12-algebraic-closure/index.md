@@ -207,7 +207,199 @@ $$
 - **几何 Langlands（Frenkel–Gaitsgory 等）：** 用 étale 基本群和表示论的语言重新表述。
 :::
 
+
+## 微分 Galois 理论 {#differential-galois}
+
+::: intuition 从代数到微分
+经典 Galois 理论研究多项式方程的对称性。**微分 Galois 理论**将这一思想推广到**线性微分方程**：它研究的是微分域（带导算子的域）的扩张，而非代数域扩张。
+:::
+
+::: definition 微分域与微分扩张 {#def-differential-field}
+一个**微分域** $(K, \partial)$ 是一个域 $K$ 带有一个导算子 $\partial: K \to K$（满足 Leibniz 法则和加法线性性）。
+
+典型例子：$K = \mathbb{C}(t)$，$\partial = d/dt$（有理函数域上的通常导数）。
+
+**Picard–Vessiot 扩张**是微分 Galois 理论中"Galois 扩张"的类比：它是包含线性微分方程所有解的最小微分扩张，且满足可分性条件。
+:::
+
+::: theorem 微分 Galois 对应 {#thm-differential-galois}
+设 $L/K$ 是 Picard–Vessiot 扩张。则存在**微分 Galois 群** $\operatorname{DGal}(L/K)$（一个线性代数群），使得：
+
+**(i)** $L^{\operatorname{DGal}(L/K)} = K$（不动域恰好是基域）。
+
+**(ii)** 存在中间微分域与 $\operatorname{DGal}(L/K)$ 的闭子群之间的反序一一对应（微分 Galois 对应）。
+
+**(iii)** $L/K$ 是"微分 Galois 的"当且仅当 $\operatorname{DGal}(L/K)$ 是线性代数群。
+:::
+
+::: example 指数方程 {#ex-differential-exp}
+考虑微分方程 $y' = ay$（$a \in K$）。解为 $y = ce^{\int a}$。
+
+- 若 $a = 1$，$K = \mathbb{C}(t)$，则解涉及 $e^t$。微分 Galois 群为 $\mathbb{G}_m = \operatorname{GL}_1$（乘法群），因为解空间是一维的，$e^t$ 不在 $\mathbb{C}(t)$ 中。
+- 若 $a = 0$，则解在 $K$ 中，Galois 群平凡。
+- **Liouville 定理（1835）：** $\int e^{-t^2} dt$（误差函数）不能用初等函数表示，对应于 Galois 群 $\operatorname{GL}_1$ 非平凡。
+:::
+
+::: intuition 算法不可积性
+微分 Galois 理论提供了"**不可积性**"的精确判据：一个线性微分方程有初等解当且仅当其微分 Galois 群可解（在适当的代数群意义下）。这与经典 Galois 理论中"五次方程无根式解"的定理完全类比。
+:::
+
 ---
+
+## Tannakian 范畴与重建定理 {#tannakian}
+
+::: definition Tannakian 范畴 {#def-tannakian}
+一个**Tannakian 范畴**是一个具有张量积结构的 Abel 范畴 $\mathcal{C}$，满足：
+
+**(T1)** $\mathcal{C}$ 是 $k$-线性的（$k$ 为域）。
+
+**(T2)** $\mathcal{C}$ 有对称幺半张量积结构 $\otimes$ 和单位对象 $\mathbf{1}$。
+
+**(T3)** 每个对象的对偶存在（刚性条件）。
+
+**(T4)** 存在一个"纤维函子" $\omega: \mathcal{C} \to \operatorname{Vec}_k$（忠实、精确的 $k$-线性张量函子）。
+:::
+
+::: theorem Tannaka 重建定理 {#thm-tannaka-reconstruction}
+**（Tannaka–Krein–Deligne）** 设 $(\mathcal{C}, \otimes, \omega)$ 是 Tannakian 范畴。令 $G = \underline{\operatorname{Aut}}^{\otimes}(\omega)$（纤维函子的张量自同构群，作为仿射群概形）。则：
+
+$$
+\mathcal{C} \simeq \operatorname{Rep}_k(G)
+$$
+
+即 $\mathcal{C}$ 等价于 $G$ 的有限维 $k$-表示范畴。
+:::
+
+::: intuition Tannakian 重建的意义
+Tannakian 哲学是：**从范畴恢复群**。如果我们有一个范畴，它"看起来像"某个群的表示范畴，那么这个群就完全由范畴的张量结构决定。
+
+这与 Galois 理论的联系：
+- 设 $L/K$ 是 Galois 扩张，$G = \operatorname{Gal}(L/K)$。则 $L$ 上的 $G$-等变向量空间构成 Tannakian 范畴，Tannaka 重建恢复 $G$。
+- **Motivic Galois 群**：纯动机的范畴（若存在）应该是某个 pro-reductive 群的表示范畴——这就是 motivic Galois 群。它是"最大的 Galois 群"，统一了所有上同调理论中的 Galois 作用。
+- **Serre 的 Tannakian 分类**：有限群的 Galois 表示的 Tannakian 范畴确定了一个 pro-algebraic 群，其有限商恰好分类了所有该群的表示。
+:::
+
+---
+
+## Étale 上同调 {#etale-cohomology}
+
+::: intuition 为什么需要 étale 上同调？
+代数簇的"拓扑"信息（Betti 数、Lefschetz 不动点定理等）在 Zariski 拓扑下几乎完全丢失——Zariski 拓扑太粗糙了。Grothendieck 引入 **étale 拓扑**作为代数簇的"正确的"拓扑，使得拓扑方法（覆盖空间、上同调、同伦）可以在代数几何中应用。
+:::
+
+::: definition Étale 上同调 {#def-etale-cohomology}
+设 $X$ 是概形，$\ell$ 是与 $\operatorname{char} X$ 互素的素数。$X$ 的 **étale 上同调** $H^i_{\text{ét}}(X, \mathbb{Z}/\ell^n\mathbb{Z})$ 由 $\mathbb{Z}/\ell^n\mathbb{Z}$ 的常值层在 étale 拓扑下的层上同调定义。
+
+取逆极限得 $\ell$-进上同调：
+$$
+H^i_{\text{ét}}(X, \mathbb{Z}_\ell) = \varprojlim_n H^i_{\text{ét}}(X, \mathbb{Z}/\ell^n\mathbb{Z}), \quad H^i_{\text{ét}}(X, \mathbb{Q}_\ell) = H^i_{\text{ét}}(X, \mathbb{Z}_\ell) \otimes_{\mathbb{Z}_\ell} \mathbb{Q}_\ell.
+$$
+:::
+
+::: theorem étale 上同调的基本性质 {#thm-etale-cohomology-properties}
+设 $X$ 是特征零域 $k$ 上的光滑代数簇，$d = \dim X$。
+
+**(i)** **有限性：** $H^i_{\text{ét}}(X_{\bar{k}}, \mathbb{Q}_\ell)$ 是有限维 $\mathbb{Q}_\ell$-向量空间。
+
+**(ii)** **Poincaré 对偶：** 若 $X$ 是 $k$ 上光滑、几何连通、纯维数 $d$ 的射影簇，则存在完美配对 $H^i \times H^{2d-i} \to H^{2d} \cong \mathbb{Q}_\ell(-d)$。
+
+**(ii)** **Lefschetz 不动点公式：** 若 $f: X \to X$ 是自态射，则 $f$ 的不动点个数（计重数）为 $\sum_i (-1)^i \operatorname{tr}(f^* | H^i_{\text{ét}})$。
+
+**(iv)** **复比较定理：** 若 $k = \mathbb{C}$，则 $H^i_{\text{ét}}(X^{\text{an}}, \mathbb{Q}_\ell) \cong H^i_{\text{sing}}(X^{\text{an}}, \mathbb{Q}) \otimes_{\mathbb{Q}} \mathbb{Q}_\ell$（奇异上同调的 $\ell$-进实现）。
+:::
+
+::: intuition étale 上同调的 Galois 作用
+$X$ 的 étale 上同调 $H^i_{\text{ét}}(X_{\bar{k}}, \mathbb{Q}_\ell)$ 上有一个自然的 $G_k$ 作用（$\bar{k}/k$ 的 Galois 群）。这正是 [§12 中 Galois 表示](#galois-representations)的来源——椭圆曲线 $E$ 的 Tate 模 $T_\ell(E)$ 就是 $H^1_{\text{ét}}(E_{\bar{k}}, \mathbb{Z}_\ell)$ 的对偶。
+
+**Weil 猜想**（Deligne, 1974 证明）的核心就是用 étale 上同调中 Frobenius 的特征值来计算 zeta 函数。
+:::
+
+---
+
+## Perfectoid 空间 {#perfectoid-spaces}
+
+::: intuition Scholze 的革命
+**Perfectoid 空间**（Peter Scholze, 2012）是 $p$-进几何中一个全新的框架。它的一个核心思想是：在"足够深"的 $p$-进扩张中，**加法结构和乘法结构可以互换**（tilting 对应）。这为 $p$-进 Hodge 理论和 Langlands 纲领提供了革命性的新工具。
+:::
+
+::: definition 完备代数闭非阿基米德域 {#def-perfectoid-field}
+一个**完美域**（perfectoid field）是一个完备的非阿基米德域 $K$，满足：
+
+**(P1)** 值群 $|K^\times| \subset \mathbb{R}_{>0}$ 是稠密的。
+
+**(P2)** Frobenius 映射 $\phi: \mathcal{O}_K/p \to \mathcal{O}_K/p$ 是满射（$p = \operatorname{char}(\mathcal{O}_K/\mathfrak{m}_K)$）。
+
+例子：$\mathbb{C}_p$（$\mathbb{Q}_p$ 的完备代数闭包）是完美域。
+:::
+
+::: theorem Tilting 对应 {#thm-tilting}
+设 $K$ 是完美域，特征为 $p$。则存在**tilt** $K^\flat$（特征 $p$ 的完美域）使得：
+
+$$
+K^\flat = \varprojlim_{x \mapsto x^p} \mathcal{O}_K/p
+$$
+
+**关键定理（Fontaine–Wintenberger, Scholze 推广）：** $K$ 和 $K^\flat$ 的**绝对 Galois 群同构**：
+$$
+G_K \cong G_{K^\flat}.
+$$
+:::
+
+::: intuition 完美对应
+Tilting 对应是说：在 perfectoid 世界中，**特征零的算术和特征 $p$ 的算术本质上是等价的**。一个关于 $K$ 的 Galois 理论问题可以被"倾斜"到特征 $p$ 的对应物 $K^\flat$ 上——而后者通常更简单（因为 Frobenius 是满射，代数结构更"完美"）。
+
+这与 Galois 理论的联系：
+- $G_K \cong G_{K^\flat}$ 意味着两个"完全不同"的域有相同的 Galois 群。这是 anabelian 几何精神的一个实例。
+- Scholze 用 perfectoid 空间证明了**局部 Langlands 对应**的某些新情形，以及**固有性定理**（关于 Shimura 簇上同调的上同调有限性）。
+:::
+
+---
+
+## $p$-进 Hodge 理论 {#p-adic-hodge}
+
+::: intuition 几种上同调的统一
+对复数域上的光滑射影簇 $X$，我们有奇异上同调 $H^i_{\text{sing}}$（Betti 上同调）、de Rham 上同调 $H^i_{\text{dR}}$ 和代数 de Rham 上同调之间的经典比较同构（de Rham 定理）。
+
+对 $p$-进域上的簇，**$p$-进 Hodge 理论**（Fontaine, 1980s–）建立了 étale 上同调、de Rham 上同调和晶体上同调之间的比较同构。这是 Hodge 理论的 $p$-进类比。
+:::
+
+::: theorem $p$-进 Hodge 理论的基本比较定理 {#thm-p-adic-hodge}
+设 $K$ 是有限扩张 $K/\mathbb{Q}_p$，$X$ 是 $K$ 上的光滑固有代数簇。Fontaine 构造了**周期环** $B_{\text{dR}}$、$B_{\text{cris}}$、$B_{\text{st}}$，使得：
+
+**(i) de Rham 比较（Faltings, 1989）：**
+$$
+H^i_{\text{ét}}(X_{\bar{K}}, \mathbb{Q}_p) \otimes_{\mathbb{Q}_p} B_{\text{dR}} \cong H^i_{\text{dR}}(X/K) \otimes_K B_{\text{dR}}.
+$$
+
+**(ii)** 若 $X$ 有**好约化**（good reduction），则：
+$$
+H^i_{\text{ét}}(X_{\bar{K}}, \mathbb{Q}_p) \otimes_{\mathbb{Q}_p} B_{\text{cris}} \cong H^i_{\text{cris}}(\bar{X}_0/W(\bar{k})) \otimes_{W(\bar{k})} B_{\text{cris}},
+$$
+其中 $H^i_{\text{cris}}$ 是晶体上同调（crystalline cohomology），$W(\bar{k})$ 是 Witt 向量环。
+:::
+
+::: intuition Hodge–Tate 分解
+最简单的比较定理是 **Hodge–Tate 分解**（Fontaine）：
+$$
+H^i_{\text{ét}}(X_{\bar{K}}, \mathbb{Q}_p) \otimes_{\mathbb{Q}_p} \mathbb{C}_p \cong \bigoplus_{j=0}^i H^j(X, \Omega^{i-j}_{X/K}) \otimes_K \mathbb{C}_p(j),
+$$
+其中 $\mathbb{C}_p(j)$ 是第 $j$ 次 Tate 扭。
+
+这将 étale 上同调（Galois 表示的载体）与代数 de Rham 上同调（微分形式的载体）联系起来，是 $p$-进 Hodge 理论的基石。
+:::
+
+::: theorem Scholze 的 $p$-进 Hodge 理论 {#thm-scholze-hodge}
+Scholze（2013–）用 perfectoid 空间给出了 $p$-进 Hodge 理论的新证明和发展：
+
+**(i)** **Hodge–Tate 谱序列的退化：** 通过 perfectoid 空间的 Hodge–Tate 谱序列，Scholze 给出了更概念化和更一般的情形。
+
+**(ii)** **相对 $p$-进 Hodge 理论：** 在 perfectoid 空间上，$B_{\text{dR}}$ 变成了层（而非仅仅是 Galois 模），这允许在模空间族上做 Hodge 理论。
+
+**(iii)** **固有性定理（Scholze, 2015）：** 某些 Shimura 簇的上同调是固有的（overconvergent），这用传统方法无法证明。
+:::
+
+---
+
 
 ## 覆盖空间与 Galois 理论的拓扑类比 {#topology-analogy}
 

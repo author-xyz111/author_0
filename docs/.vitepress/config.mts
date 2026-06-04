@@ -220,7 +220,7 @@ export default defineConfig({
           { text: '第九章 · 可解性与尺规作图', link: '/chapters/09-solvability/' },
           { text: '第十章 · 有限域', link: '/chapters/10-finite-fields/' },
           { text: '第十一章 · 无限 Galois 理论', link: '/chapters/11-infinite-galois/' },
-          { text: '第十二章 · 代数闭包与超越扩张', link: '/chapters/12-algebraic-closure/' },
+          { text: '第十二章 · 前沿方向', link: '/chapters/12-algebraic-closure/' },
         ]
       },
       {
@@ -355,6 +355,19 @@ export default defineConfig({
           text: '第十二章 · 前沿方向',
           items: [
             { text: '概述', link: '/chapters/12-algebraic-closure/' },
+            { text: '12.1 逆 Galois 问题', link: '/chapters/12-algebraic-closure/#inverse-galois' },
+            { text: '12.2 Grothendieck Galois 理论', link: '/chapters/12-algebraic-closure/#grothendieck-galois' },
+            { text: '12.3 Étale 基本群', link: '/chapters/12-algebraic-closure/#etale-fundamental-group' },
+            { text: '12.4 Anabelian 几何', link: '/chapters/12-algebraic-closure/#anabelian-geometry' },
+            { text: '12.5 Galois 上同调', link: '/chapters/12-algebraic-closure/#galois-cohomology' },
+            { text: '12.6 Galois 表示', link: '/chapters/12-algebraic-closure/#galois-representations' },
+            { text: '12.7 类域论', link: '/chapters/12-algebraic-closure/#class-field-theory' },
+            { text: '12.8 Langlands 纲领', link: '/chapters/12-algebraic-closure/#langlands-program' },
+            { text: '12.9 微分 Galois 理论', link: '/chapters/12-algebraic-closure/#differential-galois' },
+            { text: '12.10 Tannakian 范畴', link: '/chapters/12-algebraic-closure/#tannakian' },
+            { text: '12.11 Étale 上同调', link: '/chapters/12-algebraic-closure/#etale-cohomology' },
+            { text: '12.12 Perfectoid 空间', link: '/chapters/12-algebraic-closure/#perfectoid-spaces' },
+            { text: '12.13 p-adic Hodge 理论', link: '/chapters/12-algebraic-closure/#p-adic-hodge' },
           ]
         }
       ],
