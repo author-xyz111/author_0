@@ -147,7 +147,7 @@ function writeManifest() {
     }
   }
   try {
-    const outPath = resolve(__dirname, '../public/crossref-manifest.json')
+    const outPath = resolve(import.meta.dirname, '../public/crossref-manifest.json')
     writeFileSync(outPath, JSON.stringify(manifest, null, 2), 'utf-8')
     console.log(`[crossref] Manifest written: ${Object.keys(manifest).length} anchors → ${outPath}`)
   } catch (e) {
