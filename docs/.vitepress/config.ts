@@ -1,4 +1,6 @@
 import { defineConfig } from 'vitepress'
+import { writeFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import container from 'markdown-it-container'
 import type MarkdownIt from 'markdown-it'
 
@@ -90,6 +92,64 @@ function crossrefPlugin(md: MarkdownIt) {
   }
 }
 
+// ── Build-time anchor manifest for cross-page cross-references ─────────
+// Generates JSON mapping each anchor ID → page path
+interface AnchorEntry { id: string; page: string; kind: string }
+const anchorRegistry: AnchorEntry[] = []
+const pageAnchors = new Map<string, Set<string>>() // page → set of anchor IDs
+
+function crossrefManifestPlugin(md: MarkdownIt) {
+  // Intercept render to collect all {#id} anchors per page
+  const origRender = md.render.bind(md)
+  md.render = function (src: string, env?: any) {
+    // Extract all {#id} patterns from the source
+    const idRegex = /\{#([a-zA-Z0-9_-]+)\}/g
+    let match: RegExpExecArray | null
+    while ((match = idRegex.exec(src)) !== null) {
+      const id = match[1]
+      // Determine the kind from the preceding container type
+      const prefix = src.slice(Math.max(0, match.index - 100), match.index)
+      let kind = 'def'
+      if (prefix.includes('theorem')) kind = 'thm'
+      else if (prefix.includes('lemma')) kind = 'lem'
+      else if (prefix.includes('proposition')) kind = 'prop'
+      else if (prefix.includes('corollary')) kind = 'cor'
+      else if (prefix.includes('example')) kind = 'ex'
+      else if (prefix.includes('remark')) kind = 'rem'
+      else if (prefix.includes('axiom')) kind = 'ax'
+      else if (prefix.includes('notation')) kind = 'not'
+      else if (prefix.includes('definition')) kind = 'def'
+      else if (prefix.includes('intuition')) kind = 'int'
+
+      if (env) {
+        const page = env.relativePath || ''
+        if (!pageAnchors.has(page)) pageAnchors.set(page, new Set())
+        pageAnchors.get(page)!.add(id)
+        anchorRegistry.push({ id, page: '/' + page.replace(/index\.md$/, '').replace(/\.md$/, ''), kind })
+      }
+    }
+    return origRender(src, env)
+  }
+}
+
+// Write manifest after build
+function writeManifest() {
+  const manifest: Record<string, string> = {}
+  for (const entry of anchorRegistry) {
+    // Only keep the first occurrence (earliest page in build order)
+    if (!manifest[entry.id]) {
+      manifest[entry.id] = entry.page
+    }
+  }
+  try {
+    const outPath = resolve(__dirname, '../public/crossref-manifest.json')
+    writeFileSync(outPath, JSON.stringify(manifest, null, 2), 'utf-8')
+    console.log(`[crossref] Manifest written: ${Object.keys(manifest).length} anchors → ${outPath}`)
+  } catch (e) {
+    // In dev mode, public/ may not exist yet — silently ignore
+  }
+}
+
 // ── Site config ────────────────────────────────────────────────────────
 export default defineConfig({
   title: '现代 Galois 理论',
@@ -107,11 +167,14 @@ export default defineConfig({
   lastUpdated: true,
   cleanUrls: true,
 
+  buildEnd: writeManifest,
+
   markdown: {
     math: true,   // built-in KaTeX via markdown-it-mathjax3
     config: (md) => {
       registerMathContainers(md)
       md.use(crossrefPlugin)
+      md.use(crossrefManifestPlugin)
     }
   },
 
@@ -173,6 +236,8 @@ export default defineConfig({
           items: [
             { text: '概述', link: '/chapters/02-rings/' },
             { text: '2.1 环的定义与基本性质', link: '/chapters/02-rings/2.1-basic-definitions' },
+            { text: '2.2 理想与商环', link: '/chapters/02-rings/2.2-ideals' },
+            { text: '2.3 多项式环', link: '/chapters/02-rings/2.3-polynomial-rings' },
           ]
         }
       ],
@@ -182,6 +247,8 @@ export default defineConfig({
           items: [
             { text: '概述', link: '/chapters/03-fields/' },
             { text: '3.1 域的定义与基本性质', link: '/chapters/03-fields/3.1-basic-definitions' },
+            { text: '3.2 域的基本扩张', link: '/chapters/03-fields/3.2-basic-extensions' },
+            { text: '3.3 代数元与极小多项式', link: '/chapters/03-fields/3.3-algebraic-elements' },
           ]
         }
       ],

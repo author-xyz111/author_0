@@ -1,25 +1,58 @@
----
-outline: [2, 3]
----
+# 第三章 · 域论基础
 
-# 第三章 域论基础
+<div class="chapter-meta">
+  <span class="chapter-tag">基础理论</span>
+  <span class="chapter-deps">依赖：[第一章 · 群论](/chapters/01-groups/) · [第二章 · 环与理想](/chapters/02-rings/)</span>
+</div>
 
-::: info 本章概要
-域是 Galois 理论的舞台。本章建立域的基本概念：素域、特征、域的自同构。域论是将群论和环论应用于多项式方程求解的关键过渡。
+## 概述
+
+域是代数结构中最接近我们直觉的"数系"概念。有理数 $\mathbb{Q}$、实数 $\mathbb{R}$、复数 $\mathbb{C}$ 都是域的例子，但域论的真正力量在于它为**多项式方程的可解性**提供了精确的语言。
+
+本章建立域论的基本词汇：
+- **域的定义**：具有乘法逆元的交换环
+- **域的特征**：素数或零，决定了域的"算术基底"
+- **域扩张**：将域嵌入更大的域，是 Galois 理论的核心操作
+- **代数元与超越元**：扩张中元素的分类
+- **极小多项式**：代数元的"代数身份证"
+
+## 章节导航
+
+| 节次 | 主题 | 关键概念 |
+|------|------|----------|
+| §3.1 | [域的定义与基本性质](3.1-basic-definitions) | 域、除环、域的特征、素域 |
+| §3.2 | [域的基本扩张](3.2-basic-extensions) | 域扩张、扩张次数、塔定律 |
+| §3.3 | [代数元与极小多项式](3.3-algebraic-elements) | 代数元、超越元、极小多项式、代数扩张 |
+
+## 本章的关键洞察
+
+::: details 💡 为什么域论是 Galois 理论的基础？
+Galois 理论的核心问题是：**多项式方程何时可用根式求解？** 这个问题需要精确地讨论：
+1. **根在哪个域中？** → 需要域扩张理论
+2. **根的对称性是什么？** → 需要 Galois 群（自同构群）
+3. **如何从对称性推断可解性？** → 需要 Galois 对应
+
+域论为我们提供了讨论这些问题的语言。
 :::
 
-## 本章内容
+## 与其他章节的联系
 
-| 节 | 标题 | 核心概念 |
-|---|------|----------|
-| §3.1 | [域的定义](/chapters/03-fields/3.1-definition) | 域、域的公理、域的基本性质 |
-| §3.2 | [素域与特征](/chapters/03-fields/3.2-prime-fields) | 素域、域的特征、$\mathbb{Q}$ 和 $\mathbb{F}_p$ |
-| §3.3 | [域的自同构](/chapters/03-fields/3.3-automorphisms) | $\operatorname{Aut}(K)$、自同构群、固定子域 |
+```mermaid
+graph TB
+    R[第二章 · 环与理想] --> F[第三章 · 域论基础]
+    F --> P[第四章 · 多项式]
+    P --> FE[第五章 · 域扩张]
+    FE --> SF[第六章 · 分裂域与正规扩张]
+    SF --> GG[第七章 · Galois 群]
+    
+    G[第一章 · 群论] --> GG
+    
+    style F fill:#dbeafe,stroke:#2563eb,stroke-width:3px
+```
 
-## 与前后章的联系
+---
 
-::: remark
-1. 域的特征决定了它的素域是 $\mathbb{Q}$（特征 0）还是 $\mathbb{F}_p$（特征 $p > 0$），这是 [§10 有限域](/chapters/10-finite-fields/) 的基础。
-2. 域的自同构群 $\operatorname{Aut}(K)$ 是 Galois 理论的起点——Galois 群正是域扩张 $L/K$ 中保持 $K$ 不变的自同构组成的群（{def-galois-group}）。
-3. [域扩张](/chapters/05-field-extensions/) 将在本章基础上建立代数扩张和超越扩张的理论。
-:::
+<div class="chapter-nav">
+  <span>← [第二章 · 环与理想](/chapters/02-rings/)</span>
+  <span>[§3.1 域的定义与基本性质 →](3.1-basic-definitions)</span>
+</div>
