@@ -1,5 +1,6 @@
 .agent
 node_modules/
-.vitepress/dist/
-.vitepress/cache/
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+docs/public/crossref-manifest.json
 .DS_Store
