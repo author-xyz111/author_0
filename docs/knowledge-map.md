@@ -124,16 +124,16 @@
         <text x="60" y="15" fill="#155e75">不可约多项式</text>
       </g>
     </a>
-    <a href="/chapters/05-field-extensions/">
+    <a href="/chapters/05-splitting-fields/">
       <g class="node" transform="translate(550,278)">
         <rect width="120" height="30" fill="#eef2ff" stroke="#6366f1"/>
-        <text x="60" y="15" fill="#312e81">域扩张</text>
+        <text x="60" y="15" fill="#312e81">域扩张基础</text>
       </g>
     </a>
-    <a href="/chapters/05-field-extensions/">
+    <a href="/chapters/05-splitting-fields/">
       <g class="node" transform="translate(750,278)">
         <rect width="120" height="30" fill="#eef2ff" stroke="#6366f1"/>
-        <text x="60" y="15" fill="#312e81">代数 / 超越</text>
+        <text x="60" y="15" fill="#312e81">代数与超越扩张</text>
       </g>
     </a>
     <a href="/chapters/04-polynomials/">
@@ -142,13 +142,13 @@
         <text x="70" y="15" fill="#881337">根式可解</text>
       </g>
     </a>
-    <a href="/chapters/06-splitting-fields/">
+    <a href="/chapters/05-splitting-fields/">
       <g class="node" transform="translate(340,368)">
         <rect width="130" height="30" fill="#fef2f2" stroke="#ef4444"/>
         <text x="65" y="15" fill="#7f1d1d">分裂域</text>
       </g>
     </a>
-    <a href="/chapters/06-splitting-fields/">
+    <a href="/chapters/05-splitting-fields/">
       <g class="node" transform="translate(550,368)">
         <rect width="130" height="30" fill="#fef2f2" stroke="#ef4444"/>
         <text x="65" y="15" fill="#7f1d1d">正规 / 可分扩张</text>

@@ -11,6 +11,9 @@
   --galois-primary-dark: #1a2760;
   --galois-accent: #c9a227;
   --galois-accent-light: #e0c157;
+  --galois-gold: #d4a017;
+  --galois-primary-glow: rgba(44, 62, 140, 0.4);
+  --galois-silver: #94a3b8;
 
   /* Math environment colors */
   --env-definition-bg: #eff6ff;
@@ -799,79 +802,6 @@ html {
   line-height: 1.6;
 }
 
-/* ── Cross-Reference Links ───────────────────────────────────────────── */
-.crossref {
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  padding: 1px 6px;
-  border-radius: 4px;
-  font-size: 0.88em;
-  font-weight: 500;
-  text-decoration: none !important;
-  border-bottom: none !important;
-  transition: all 0.2s ease;
-  vertical-align: baseline;
-  position: relative;
-}
-
-.crossref__bracket {
-  opacity: 0.5;
-  font-weight: 400;
-}
-
-.crossref--def {
-  color: var(--env-blue);
-  background: rgba(59, 130, 246, 0.08);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-}
-
-.crossref--thm {
-  color: var(--env-gold);
-  background: rgba(234, 179, 8, 0.08);
-  border: 1px solid rgba(234, 179, 8, 0.2);
-}
-
-.crossref--lem {
-  color: var(--env-purple);
-  background: rgba(168, 85, 247, 0.08);
-  border: 1px solid rgba(168, 85, 247, 0.2);
-}
-
-.crossref--prop {
-  color: var(--env-teal);
-  background: rgba(20, 184, 166, 0.08);
-  border: 1px solid rgba(20, 184, 166, 0.2);
-}
-
-.crossref--cor {
-  color: var(--env-green);
-  background: rgba(34, 197, 94, 0.08);
-  border: 1px solid rgba(34, 197, 94, 0.2);
-}
-
-.crossref--ex {
-  color: var(--env-cyan);
-  background: rgba(6, 182, 212, 0.08);
-  border: 1px solid rgba(6, 182, 212, 0.2);
-}
-
-.crossref:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.crossref--def:hover { background: rgba(59, 130, 246, 0.15); }
-.crossref--thm:hover { background: rgba(234, 179, 8, 0.15); }
-.crossref--lem:hover { background: rgba(168, 85, 247, 0.15); }
-.crossref--prop:hover { background: rgba(20, 184, 166, 0.15); }
-.crossref--cor:hover { background: rgba(34, 197, 94, 0.15); }
-.crossref--ex:hover { background: rgba(6, 182, 212, 0.15); }
-
-.dark .crossref--def { background: rgba(96, 165, 250, 0.12); border-color: rgba(96, 165, 250, 0.25); }
-.dark .crossref--thm { background: rgba(250, 204, 21, 0.12); border-color: rgba(250, 204, 21, 0.25); }
-.dark .crossref--lem { background: rgba(192, 132, 252, 0.12); border-color: rgba(192, 132, 252, 0.25); }
-
 /* ── Cross-Ref Tooltip Overlay ───────────────────────────────────────── */
 .crossref-tooltip-overlay {
   position: fixed;
@@ -907,19 +837,41 @@ html {
   top: 0;
   left: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--galois-primary) 0%, var(--galois-accent) 50%, var(--galois-gold) 100%);
+  background: linear-gradient(90deg, var(--galois-primary) 0%, var(--galois-accent) 50%, var(--galois-gold, #d4a017) 100%);
   z-index: 999;
   transition: width 0.1s linear;
-  box-shadow: 0 0 8px var(--galois-primary-glow);
+  box-shadow: 0 0 8px var(--galois-primary-glow, rgba(44, 62, 140, 0.4));
+}
+
+/* ── New Component: Galois Correspondence Interactive ──────────────── */
+.gci {
+  --gci-node-bg: var(--vp-c-bg-soft);
+  --gci-node-stroke: var(--vp-c-divider);
+  --gci-edge: var(--vp-c-divider);
+  --gci-selected: var(--galois-primary);
+  --gci-highlight: var(--galois-accent);
+}
+
+/* ── New Component: Proof Explorer ──────────────────────────────────── */
+.proof-explorer {
+  --pe-accent: var(--galois-primary);
+  --pe-step-bg: var(--vp-c-bg-soft);
+  --pe-dot: var(--vp-c-divider);
+  --pe-dot-active: var(--galois-primary);
+}
+
+/* ── New Component: Concept Card ────────────────────────────────────── */
+.concept-card__popup {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.dark .concept-card__popup {
+  background: rgba(30, 30, 36, 0.95);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 /* ── Dependency Graph Enhancements ───────────────────────────────────── */
-.dep-graph-container {
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
-  overflow: hidden;
-  background: var(--vp-c-bg-alt);
-}
 
 .dep-graph-container svg {
   width: 100%;
@@ -974,7 +926,7 @@ html {
 
 .thm-explorer__search input:focus {
   border-color: var(--galois-primary);
-  box-shadow: 0 0 0 3px var(--galois-primary-glow);
+  box-shadow: 0 0 0 3px var(--galois-primary-glow, rgba(44, 62, 140, 0.4));
 }
 
 .thm-explorer__filters {

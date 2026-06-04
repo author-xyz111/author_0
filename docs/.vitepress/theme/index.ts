@@ -1,6 +1,5 @@
 import DefaultTheme from 'vitepress/theme'
 import type { Theme } from 'vitepress'
-import { onContentUpdated } from 'vitepress'
 import { onMounted, watch, nextTick } from 'vue'
 import { useRoute } from 'vitepress'
 import ProofToggle from './components/ProofToggle.vue'
@@ -12,6 +11,9 @@ import CrossRefTooltip from './components/CrossRefTooltip.vue'
 import DependencyGraph from './components/DependencyGraph.vue'
 import TheoremExplorer from './components/TheoremExplorer.vue'
 import ReadingProgress from './components/ReadingProgress.vue'
+import ConceptCard from './components/ConceptCard.vue'
+import ProofExplorer from './components/ProofExplorer.vue'
+import GaloisCorrespondenceInteractive from './components/GaloisCorrespondenceInteractive.vue'
 import './custom.css'
 
 // Cross-page cross-reference manifest
@@ -23,7 +25,8 @@ let manifestFetchPromise: Promise<Record<string, string>> | null = null
 async function loadManifest(): Promise<Record<string, string>> {
   if (crossrefManifest) return crossrefManifest
   if (!manifestFetchPromise) {
-    manifestFetchPromise = fetch('/author_0/crossref-manifest.json')
+    const base = (import.meta as any).env?.BASE_URL || '/'
+    manifestFetchPromise = fetch(base + 'crossref-manifest.json')
       .then(r => r.ok ? r.json() : {})
       .catch(() => ({}))
   }
@@ -78,6 +81,9 @@ export default {
     app.component('DependencyGraph', DependencyGraph)
     app.component('TheoremExplorer', TheoremExplorer)
     app.component('ReadingProgress', ReadingProgress)
+    app.component('ConceptCard', ConceptCard)
+    app.component('ProofExplorer', ProofExplorer)
+    app.component('GaloisCorrespondenceInteractive', GaloisCorrespondenceInteractive)
   },
   setup() {
     const route = useRoute()
