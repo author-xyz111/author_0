@@ -345,12 +345,14 @@ export default defineConfig({
           text: '第十一章 · 无限 Galois 理论',
           items: [
             { text: '概述', link: '/chapters/11-infinite-galois/' },
+            { text: '11.1 Krull 拓扑', link: '/chapters/11-infinite-galois/11.1-krull-topology' },
+            { text: '11.2 无限 Galois 对应', link: '/chapters/11-infinite-galois/11.2-galois-correspondence' },
           ]
         }
       ],
       '/chapters/12-algebraic-closure/': [
         {
-          text: '第十二章 · 代数闭包与超越扩张',
+          text: '第十二章 · 前沿方向',
           items: [
             { text: '概述', link: '/chapters/12-algebraic-closure/' },
           ]
