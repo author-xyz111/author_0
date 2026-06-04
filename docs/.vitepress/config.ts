@@ -196,7 +196,7 @@ export default defineConfig({
           { text: '第二章 · 环与理想', link: '/chapters/02-rings/' },
           { text: '第三章 · 域论基础', link: '/chapters/03-fields/' },
           { text: '第四章 · 多项式', link: '/chapters/04-polynomials/' },
-          { text: '第五章 · 域扩张', link: '/chapters/05-field-extensions/' },
+          { text: '第五章 · 分裂域与正规扩张', link: '/chapters/05-splitting-fields/' },
           { text: '第六章 · 分裂域与正规扩张', link: '/chapters/06-splitting-fields/' },
           { text: '第七章 · Galois 群', link: '/chapters/07-galois-groups/' },
           { text: '第八章 · Galois 对应', link: '/chapters/08-galois-correspondence/' },
@@ -263,11 +263,13 @@ export default defineConfig({
           ]
         }
       ],
-      '/chapters/05-field-extensions/': [
+      '/chapters/05-splitting-fields/': [
         {
-          text: '第五章 · 域扩张',
+          text: '第五章 · 分裂域与正规扩张',
           items: [
-            { text: '概述', link: '/chapters/05-field-extensions/' },
+            { text: '概述', link: '/chapters/05-splitting-fields/' },
+            { text: '5.1 分裂域', link: '/chapters/05-splitting-fields/5.1-splitting-fields' },
+            { text: '5.2 正规扩张', link: '/chapters/05-splitting-fields/5.2-normal-extensions' },
           ]
         }
       ],
