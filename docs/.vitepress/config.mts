@@ -69,9 +69,11 @@ function crossrefPlugin(md: MarkdownIt) {
     const match = src.slice(pos).match(/^\{(def|thm|lem|prop|cor|ex|rem|ax|not|int)([:\-])([a-zA-Z0-9_-]+)\}/)
     if (!match) return false
 
-    if (silent) return true
-
     const [full, kind, _sep, id] = match
+    if (silent) {
+      state.pos += full.length
+      return true
+    }
     // Normalize to dash format: "def-group", "thm-lagrange" etc.
     // This matches the anchor IDs produced by {#def-group} and the manifest keys
     const refId = `${kind}-${id}`
