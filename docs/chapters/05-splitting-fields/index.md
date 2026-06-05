@@ -86,8 +86,8 @@
 |------|------|------|
 | {thm-splitting-field-exist} | 分裂域的存在性 | 定理 |
 | {thm-splitting-field-unique} | 分裂域的唯一性（Krull） | 定理 |
-| {thm-normal-embeddings} | 正规性 ⇔ 嵌入不变 | 定理 |
-| {thm-normal-tower} | 正规扩张的塔性质 | 命题 |
+| {thm-normal-characterizations} | 正规性 ⇔ 嵌入不变 | 定理 |
+| {prop-normal-tower} | 正规扩张的塔性质 | 命题 |
 
 ---
 
