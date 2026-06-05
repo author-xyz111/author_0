@@ -70,7 +70,7 @@
 | 定理 | 内容 | 直觉 |
 |:-----|:-----|:-----|
 | {thm-finite-field-classification} | 对每个素数幂 $p^n$，存在唯一的 $p^n$ 元域 $\mathbb{F}_{p^n}$ | 有限域由其元素个数完全决定 |
-| {thm-mult-group-cyclic} | $\mathbb{F}_{p^n}^\times$ 是 $p^n - 1$ 阶循环群 | 有限域的乘法结构极其简洁 |
+| {thm-multiplicative-cyclic} | $\mathbb{F}_{p^n}^\times$ 是 $p^n - 1$ 阶循环群 | 有限域的乘法结构极其简洁 |
 | {thm-subfield} | $\mathbb{F}_{p^n}$ 的子域恰好是 $\{\mathbb{F}_{p^d} : d \mid n\}$ | 子域格与 $n$ 的因子格同构 |
 | {thm-finite-galois-correspondence} | $\operatorname{Gal}(\mathbb{F}_{p^n}/\mathbb{F}_p) \cong \mathbb{Z}/n\mathbb{Z}$，由 Frobenius 生成 | 有限域的 Galois 群是最简单的循环群 |
 | {thm-irreducible-count} | $\mathbb{F}_p[x]$ 中 $n$ 次不可约多项式个数 $= \frac{1}{n}\sum_{d \mid n} \mu(n/d) p^d$ | Möbius 反演给出精确计数 |

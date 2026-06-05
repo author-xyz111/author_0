@@ -8,7 +8,7 @@ Galois 理论在 19 世纪诞生以来，已经从解决多项式方程的工具
 
 ## 逆 Galois 问题 {#inverse-galois}
 
-::: question 逆 Galois 问题 {#qst-inverse-galois}
+::: exercise 逆 Galois 问题 {#qst-inverse-galois}
 **逆 Galois 问题：** 给定有限群 $G$，是否存在 Galois 扩张 $L/\mathbb{Q}$ 使得 $\operatorname{Gal}(L/\mathbb{Q}) \cong G$？
 :::
 
