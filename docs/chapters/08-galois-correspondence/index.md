@@ -61,7 +61,7 @@ Galois 对应是数学中"对偶性"的一个原型范例：两个看似完全�
 
 **快速路径**（30 分钟）：只读 §8.1 的核心定理（{thm-galois-correspondence} 的陈述，不读证明）和 $V_4$ 的图示例子（{ex-galois-sqrt2-sqrt3}），理解"中间域越大，对应子群越小"的反序直觉。
 
-**标准路径**（2 小时）：完整阅读 §8.1，理解 Artin 引理（{lem-artin}）的线性代数证明和四个关键步骤。然后阅读 §8.2，掌握 Galois 扩张的多种等价刻画。
+**标准路径**（2 小时）：完整阅读 §8.1，理解 Artin 引理（{thm-artin}）的线性代数证明和四个关键步骤。然后阅读 §8.2，掌握 Galois 扩张的多种等价刻画。
 
 **深入路径**（3 小时）：在标准路径基础上，仔细研究 §8.1 中正规子群对应正规扩张的完整证明（{thm-normal-characterization}），验证 $D_4$ 的 Galois 对应图，并思考 §8.2 中 Galois 扩张闭包性质的推论。
 
@@ -71,7 +71,7 @@ Galois 对应是数学中"对偶性"的一个原型范例：两个看似完全�
 
 | 定理 | 内容 | 直觉 |
 |:-----|:-----|:-----|
-| {lem-artin} | $[L : L^H] = \|H\|$（Artin 引理） | 群的大小恰好"控制"了域的大小 |
+| {thm-artin} | $[L : L^H] = \|H\|$（Artin 引理） | 群的大小恰好"控制"了域的大小 |
 | {thm-galois-correspondence} | 中间域与子群的反序双射、指数等于次数 | Galois 理论的"基本定理" |
 | {thm-normal-characterization} | $M/K$ 正规 $\Leftrightarrow$ $\operatorname{Gal}(L/M) \trianglelefteq \operatorname{Gal}(L/K)$ | 正规性在域和群两侧完美翻译 |
 | {thm-galois-extension-equiv} | Galois 扩张 $\Leftrightarrow$ 正规 + 可分 | Galois 扩张的"实用判据" |
