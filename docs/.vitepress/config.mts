@@ -255,6 +255,7 @@ export default defineConfig({
             { text: '2.1 环的定义与基本性质', link: '/chapters/02-rings/2.1-basic-definitions' },
             { text: '2.2 理想与商环', link: '/chapters/02-rings/2.2-ideals' },
             { text: '2.3 多项式环', link: '/chapters/02-rings/2.3-polynomial-rings' },
+            { text: '2.4 中国剩余定理', link: '/chapters/02-rings/2.4-crt' },
           ]
         }
       ],
