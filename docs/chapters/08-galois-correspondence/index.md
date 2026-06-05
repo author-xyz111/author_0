@@ -74,7 +74,7 @@ Galois 对应是数学中"对偶性"的一个原型范例：两个看似完全�
 | {thm-artin} | $[L : L^H] = \|H\|$（Artin 引理） | 群的大小恰好"控制"了域的大小 |
 | {thm-galois-correspondence} | 中间域与子群的反序双射、指数等于次数 | Galois 理论的"基本定理" |
 | {thm-normal-characterization} | $M/K$ 正规 $\Leftrightarrow$ $\operatorname{Gal}(L/M) \trianglelefteq \operatorname{Gal}(L/K)$ | 正规性在域和群两侧完美翻译 |
-| {thm-galois-extension-equiv} | Galois 扩张 $\Leftrightarrow$ 正规 + 可分 | Galois 扩张的"实用判据" |
+| {thm-galois-equivalent} | Galois 扩张 $\Leftrightarrow$ 正规 + 可分 | Galois 扩张的"实用判据" |
 
 ---
 

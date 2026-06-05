@@ -81,7 +81,7 @@ Krull 拓扑不是人为添加的结构，而是从域扩张本身**自然涌现
 | {thm-krull-properties} | $\operatorname{Gal}(L/K)$ 在 Krull 拓扑下是紧 Hausdorff profinite 群 | 无限 Galois 群是有限群的"极限" |
 | {thm-infinite-galois-correspondence} | 中间域与**闭**子群的反序双射 | "闭性"是无限理论的核心条件 |
 | {thm-galois-descent-vector-space} | $V^G \otimes_K L \cong V$（Galois 下降） | $L$-结构 + $G$-对称性 = $K$-结构 |
-| {thm-absolute-galois} | $G_{\mathbb{F}_q} \cong \hat{\mathbb{Z}}$，$G_\mathbb{Q}$ 极其复杂 | 有限域简单，有理数域复杂 |
+| {def-absolute-galois-group} | $G_{\mathbb{F}_q} \cong \hat{\mathbb{Z}}$，$G_\mathbb{Q}$ 极其复杂 | 有限域简单，有理数域复杂 |
 
 ---
 
