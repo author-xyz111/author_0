@@ -44,7 +44,8 @@ function resolveCrossRefs() {
   anchors.forEach((el) => {
     const dataRef = el.getAttribute('data-ref')
     if (!dataRef) return
-    const [_, refId] = dataRef.split(':')
+    // Handle both legacy "def:group" and normalized "def-group" formats
+    const refId = dataRef.replace(':', '-')
     if (!refId) return
     const target = document.getElementById(refId)
     if (target) {
@@ -62,7 +63,8 @@ function resolveCrossRefs() {
     unresolved.forEach((el) => {
       const dataRef = el.getAttribute('data-ref')
       if (!dataRef) return
-      const [_, refId] = dataRef.split(':')
+      // Handle both legacy "def:group" and normalized "def-group" formats
+      const refId = dataRef.replace(':', '-')
       if (refId && manifest[refId]) {
         el.setAttribute('href', manifest[refId] + '#' + refId)
         el.classList.add('crossref-resolved')

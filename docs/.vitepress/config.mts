@@ -65,12 +65,16 @@ function crossrefPlugin(md: MarkdownIt) {
     const pos = state.pos
     if (src.charCodeAt(pos) !== 0x7B /* { */) return false
 
-    const match = src.slice(pos).match(/^\{(def|thm|lem|prop|cor|ex|rem|ax|not|int):([a-zA-Z0-9_-]+)\}/)
+    // Match both colon format {def:group} and dash format {def-group}
+    const match = src.slice(pos).match(/^\{(def|thm|lem|prop|cor|ex|rem|ax|not|int)([:\-])([a-zA-Z0-9_-]+)\}/)
     if (!match) return false
 
     if (silent) return true
 
-    const [full, kind, id] = match
+    const [full, kind, _sep, id] = match
+    // Normalize to dash format: "def-group", "thm-lagrange" etc.
+    // This matches the anchor IDs produced by {#def-group} and the manifest keys
+    const refId = `${kind}-${id}`
     const kindLabels: Record<string, string> = {
       def: '定义', thm: '定理', lem: '引理', prop: '命题',
       cor: '推论', ex: '例', rem: '注', ax: '公理', not: '记号', int: '直觉'
@@ -78,8 +82,8 @@ function crossrefPlugin(md: MarkdownIt) {
     const label = kindLabels[kind] ?? kind
     const token = state.push('crossref', 'a', 0)
     token.attrSet('class', `crossref crossref--${kind}`)
-    token.attrSet('href', `#${id}`)
-    token.attrSet('data-ref', `${kind}:${id}`)
+    token.attrSet('href', `#${refId}`)
+    token.attrSet('data-ref', refId)
     token.content = `${label}`
     token.markup = '{'
     state.pos += full.length
