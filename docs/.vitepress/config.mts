@@ -1,9 +1,10 @@
 import { defineConfig } from 'vitepress'
-import { writeFileSync } from 'node:fs'
+import { writeFileSync, mkdirSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import container from 'markdown-it-container'
 import type MarkdownIt from 'markdown-it'
+import type Token from 'markdown-it/lib/token.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -146,8 +147,10 @@ function crossrefManifestPlugin(md: MarkdownIt) {
   }
 }
 
-// Write manifest after build AND eagerly in dev mode
-function writeManifest() {
+// Write manifest to the build output directory AND docs/public/
+// The buildEnd hook receives siteConfig, so we write to siteConfig.outDir.
+// Also write to docs/public/ so dev mode can serve it immediately.
+function writeManifest(siteConfig?: any) {
   const manifest: Record<string, string> = {}
   for (const entry of anchorRegistry) {
     // Only keep the first occurrence (earliest page in build order)
@@ -155,21 +158,76 @@ function writeManifest() {
       manifest[entry.id] = entry.page
     }
   }
+  const json = JSON.stringify(manifest, null, 2)
+  const count = Object.keys(manifest).length
+
+  // 1. Write to docs/public/ for dev mode
   try {
-    const outPath = resolve(__dirname, '../public/crossref-manifest.json')
-    writeFileSync(outPath, JSON.stringify(manifest, null, 2), 'utf-8')
-    console.log(`[crossref] Manifest written: ${Object.keys(manifest).length} anchors → ${outPath}`)
+    const pubPath = resolve(__dirname, '../public/crossref-manifest.json')
+    writeFileSync(pubPath, json, 'utf-8')
+    console.log(`[crossref] Manifest written to public: ${count} anchors → ${pubPath}`)
   } catch (e) {
-    // In dev mode, public/ may not exist yet — silently ignore
+    // ignore
+  }
+
+  // 2. Write to siteConfig.outDir for production build
+  if (siteConfig?.outDir) {
+    try {
+      const outPath = resolve(siteConfig.outDir, 'crossref-manifest.json')
+      writeFileSync(outPath, json, 'utf-8')
+      console.log(`[crossref] Manifest written to outDir: ${count} anchors → ${outPath}`)
+    } catch (e) {
+      // ignore
+    }
   }
 }
 
+// Inline anchor plugin: converts {#id} text in markdown content to <span id="id">
+// This handles standalone anchors like "**定义 3.2.4**（代数元）{#def-algebraic-element}"
+// that are not inside ::: container info strings.
+function inlineAnchorPlugin(md: MarkdownIt) {
+  md.core.ruler.push('inline-anchor', (state) => {
+    const tokens = state.tokens
+    for (let i = 0; i < tokens.length; i++) {
+      if (tokens[i].type !== 'inline') continue
+      const inlineToken = tokens[i]
+      if (!inlineToken.children) continue
+      
+      let changed = false
+      const newChildren: Token[] = []
+      for (const child of inlineToken.children) {
+        if (child.type === 'text' && child.content.includes('{#')) {
+          // Split by {#id} patterns and process each part
+          const parts = child.content.split(/(\{#[a-zA-Z0-9_-]+\})/g)
+          for (const part of parts) {
+            const match = part.match(/^\{#([a-zA-Z0-9_-]+)\}$/)
+            if (match) {
+              // Create html_inline token for the anchor span
+              const anchor = new state.Token('html_inline', '', 0)
+              anchor.content = `<span id="${match[1]}" class="crossref-anchor"></span>`
+              newChildren.push(anchor)
+              changed = true
+            } else if (part) {
+              const text = new state.Token('text', '', 0)
+              text.content = part
+              newChildren.push(text)
+            }
+          }
+        } else {
+          newChildren.push(child)
+        }
+      }
+      if (changed) {
+        inlineToken.children = newChildren
+      }
+    }
+  })
+}
+
 // Also write manifest after each page render (for dev mode)
-let manifestWritten = false
 function ensureManifestWritten() {
-  if (!manifestWritten && anchorRegistry.length > 0) {
+  if (anchorRegistry.length > 0) {
     writeManifest()
-    manifestWritten = true
   }
 }
 
@@ -198,6 +256,7 @@ export default defineConfig({
       registerMathContainers(md)
       md.use(crossrefPlugin)
       md.use(crossrefManifestPlugin)
+      md.use(inlineAnchorPlugin)
     }
   },
 
